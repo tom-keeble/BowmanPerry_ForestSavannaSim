@@ -23,7 +23,8 @@
 # 1. PACKAGES
 
 libs <- c(
-  "terra"
+  "terra",
+  "here"
 )
 
 installed_libraries <- libs %in% rownames(installed.packages())
@@ -61,7 +62,7 @@ fire_ignition <- function(landscape, burning) {
 }
 
 # Step 2b: Percolation fire spread
-fire_spread <- function(landscape, burning, fire_probability_forest=0.035, fire_probability_savanna=0.3, plotting = T) {
+fire_spread <- function(landscape, burning, fire_probability_forest=0.035, fire_probability_savanna=0.3, plotting = T, file_save = F, step = 1) {
   nrows <- nrow(landscape)
   ncols <- ncol(landscape)
   
@@ -70,6 +71,9 @@ fire_spread <- function(landscape, burning, fire_probability_forest=0.035, fire_
   
   # List to store newly burning cells
   new_burning <- burning_cells
+  
+  # 
+  spread_iter <- 1
   
   # While there are new burning cells, continue to propagate fire
   while (length(new_burning) > 0) {
@@ -102,12 +106,24 @@ fire_spread <- function(landscape, burning, fire_probability_forest=0.035, fire_
     
     # Update the burning cells for the next round of propagation
     new_burning <- new_burning_cells
+    
+    if(file_save){
+      png(here("Outputs", paste0("landscape_", step, "_", spread_iter, ".png")), width = 600, height = 220)
+      print(plot(rast(landscape + (burning*10)), col = data.frame(value = c(0, 1, 3, 10, 11, 13), color = c("brown", "green", "yellow", "red", "red", "red")), 
+                 legend = F, main = paste0("Year ", step, " (fire spread)"), loc.main = "topleft"))
+      dev.off()
+      spread_iter <- spread_iter + 1
+    }
   }
   
-  if(plotting){
-    plot(rast(burning), col = c("white", "red"))
-    Sys.sleep(0.05)
+  if(!file_save){
+    if(plotting){
+      plot(rast(burning), col = c("white", "red"))
+      Sys.sleep(0.05)
+    }
   }
+  
+  
   return(burning)
 }
 
@@ -200,7 +216,7 @@ forest_expansion <- function(landscape, colonisation_time, soil_fertility, base_
 
 
 # Step 6: Run the simulation
-run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recovery_time=15, dispersal_rate=1, fire_soil_feedback = T, edaphic_boundary = T, plotting = T) {
+run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recovery_time=15, dispersal_rate=1, fire_soil_feedback = T, edaphic_boundary = T, plotting = T, file_save = F) {
   # Initial conditions: Create a sharp transition between forest and savanna
   landscape <- matrix(0, nrow = row_size, ncol = col_size) # 0: savanna, 1: forest, 3: colonised savanna
   landscape[ , 1:(col_size / 2)] <- 0  # Savanna on the left side
@@ -228,7 +244,7 @@ run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recov
       burning <- fire_ignition(landscape, burning)
       
       # Fire spread using percolation process
-      burning <- fire_spread(landscape, burning, plotting = plotting)
+      burning <- fire_spread(landscape, burning, plotting = plotting, file_save = file_save, step = step)
     }
     
     if(fire_soil_feedback){
@@ -250,10 +266,22 @@ run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recov
     }
     
     # Optional: Visualise results at each step
-    if(plotting){
-      plot(rast(landscape), col = data.frame(value = c(0, 1, 3), color = c("brown", "green", "yellow"))$color)
-      Sys.sleep(0.05)
+    if(!file_save){
+      if(plotting){
+        plot(rast(landscape), col = data.frame(value = c(0, 1, 3), color = c("brown", "green", "yellow"))$color)
+        Sys.sleep(0.05)
+      }
     }
+    
+    if(file_save){
+      # Save current plot to file
+      png(if(step %% recurrence_interval == 0) {here("Outputs", paste0("landscape_", step, "a.png"))}else{here("Outputs", paste0("landscape_", step, ".png"))}, 
+          width = 600, height = 220)
+      print(plot(rast(landscape), col = data.frame(value = c(0, 1, 3), color = c("brown", "green", "yellow"))$color, 
+                 legend = F, main = paste0("Year ", step), loc.main = "topleft"))
+      dev.off()
+    }
+    
     print(step)
   }
   
@@ -261,7 +289,7 @@ run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recov
 }
 
 # Run the simulation
-results <- run_simulation(fire_soil_feedback = F, edaphic_boundary = F, plotting = T)
+results <- run_simulation(n_steps = 135, fire_soil_feedback = T, edaphic_boundary = T, plotting = T, file_save = T)
 
 # Visualize the final landscape
 plot(raster(results$final_landscape))
