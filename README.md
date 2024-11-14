@@ -6,8 +6,15 @@ Recreation of the Bowman and Perry (2017) model of forest-savanna transitions in
 With the model conditions of the `Edaphic boundary` and `Fire-Soil feedback` toggled on, the model produces the following state transition dynamics:
 
 ![Fire-soil feedback | Edaphic boundary](www/Example_FSfb_EdaphBound.gif)
+Fire-soil feedback | Edaphic boundary. Forest is represented by green cells, savanna by brown, savanna colonised by forest propagule in yellow, and fire in red.
 
-further examples can be viewed in the below sections.
+<figure>
+  <img src="www/Example_FSfb_EdaphBound.gif" alt="Fire-soil feedback | Edaphic boundary">
+  <figcaption>Fire-soil feedback | Edaphic boundary. Forest is represented by green cells, savanna by brown, savanna colonised by forest propagule in yellow, and fire in red.</figcaption>
+</figure>
+
+
+further examples can be viewed in the below sections...
 
 <details><summary>Fire-soil feedback | NO Edaphic boundary</summary>
 
