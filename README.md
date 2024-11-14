@@ -11,6 +11,7 @@ With the model conditions of the `Edaphic boundary` and `Fire-Soil feedback` tog
 
 <br>
 further examples can be viewed in the below sections...
+<br>
 
 <details><summary>Fire-soil feedback | NO Edaphic boundary</summary>
 
