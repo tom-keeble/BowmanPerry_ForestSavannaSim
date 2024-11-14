@@ -275,7 +275,7 @@ run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recov
     
     if(file_save){
       # Save current plot to file
-      png(if(step %% recurrence_interval == 0) {here("Outputs", paste0("landscape_", step, "a.png"))}else{here("Outputs", paste0("landscape_", step, ".png"))}, 
+      png(if(step %% recurrence_interval == 0) {here("Outputs", paste0("landscape_", step, "_a.png"))}else{here("Outputs", paste0("landscape_", step, ".png"))}, 
           width = 600, height = 220)
       print(plot(rast(landscape), col = data.frame(value = c(0, 1, 3), color = c("brown", "green", "yellow"))$color, 
                  legend = F, main = paste0("Year ", step), loc.main = "topleft"))
