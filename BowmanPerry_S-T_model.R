@@ -285,11 +285,11 @@ run_simulation <- function(n_steps=2500, recurrence_interval=15, base_fire_recov
     print(step)
   }
   
-  return(list(final_landscape=landscape, soil_fertility=soil_fertility))
+  return(list(final_landscape = landscape, soil_fertility = soil_fertility))
 }
 
 # Run the simulation
-results <- run_simulation(n_steps = 135, fire_soil_feedback = T, edaphic_boundary = T, plotting = T, file_save = T)
+results <- run_simulation(n_steps = 135, fire_soil_feedback = F, edaphic_boundary = T, plotting = F, file_save = T)
 
 # Visualize the final landscape
 plot(raster(results$final_landscape))

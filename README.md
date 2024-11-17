@@ -3,31 +3,31 @@ Recreation of the Bowman and Perry (2017) model of forest-savanna transitions in
 
 ### Results (example)
 
-With the model conditions of the `Edaphic boundary` and `Fire-Soil feedback` toggled on, the model produces the following state transition dynamics:
+With the model condition of `Fire-Soil feedback` toggled on, while the `Edaphic boundary` condition is off, the model produces the following state transition dynamics:
 
-![Fire-soil feedback | Edaphic boundary](www/Example_FSfb_EdaphBound.gif)
+![Fire-soil feedback | NO Edaphic boundary](www/Example_FSfb_NOEdaphBound.gif)
 
-*Fire-soil feedback | Edaphic boundary. Forest is represented by green cells, savanna by brown, savanna colonised by forest propagule in yellow, and fire in red.*
+*Fire-soil feedback | NO Edaphic boundary. Forest is represented by green cells, savanna by brown, savanna colonised by forest propagule in yellow, and fire in red.*
 
 <br>
 further examples can be viewed in the below sections...
 <br>
 
-<details><summary>Fire-soil feedback | NO Edaphic boundary</summary>
+<details><summary>Fire-soil feedback | Edaphic boundary</summary>
 
-To come.....
+![Fire-soil feedback | Edaphic boundary](www/Example_FSfb_EdaphBound.gif)
 
 </details>
 
 <details><summary>NO Fire-soil feedback | Edaphic boundary</summary>
 
-To come.....
+![Fire-soil feedback | Edaphic boundary](www/Example_NOFSfb_EdaphBound.gif)
 
 </details>
 
 <details><summary>NO Fire-soil feedback | NO Edaphic boundary</summary>
 
-To come.....
+![Fire-soil feedback | Edaphic boundary](www/Example_NOFSfb_NOEdaphBound.gif)
 
 </details>
 
