@@ -34,7 +34,7 @@ Further examples can be viewed in the below sections...
 </details>
 
 ### Usage
-The `run_simulation` function within the script allows for "turning on/off" the *Edaphic boundary* and *Fire-Soil feedback* conditions, along with on-the-fly plotting of the state transition dynamics.
+The `run_simulation` function within the script allows for "turning on/off" the *Edaphic boundary* and *Fire-Soil feedback* conditions, along with on-the-fly plotting of the state-transition dynamics or an option to save plots to file for creation of animated examples.
 
 ### Reference:
 - Bowman, D.M.J.S., Perry, G.L.W. (2017). Soil or fire: what causes treeless sedgelands in Tasmanian wet forests?. *Plant Soil*, *420*, 1–18. https://doi.org/10.1007/s11104-017-3386-7
