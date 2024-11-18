@@ -10,7 +10,8 @@ With the model condition of `Fire-Soil feedback` toggled on, while the `Edaphic 
 *Fire-soil feedback | NO Edaphic boundary. Forest is represented by green cells, savanna by brown, savanna colonised by forest propagule in yellow, and fire in red.*
 
 <br>
-further examples can be viewed in the below sections...
+further examples can be viewed in the below sections...\
+
 <br>
 
 <details><summary>Fire-soil feedback | Edaphic boundary</summary>
